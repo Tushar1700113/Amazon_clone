@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Clone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+        }
+
+        .navbar {
+            height: 60px;
+            background-color: #0f1111;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            position: relative;
+        }
+
+        .nav-logo {
+            height: 50px;
+            width: 100px;
+        }
+
+        .logo {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 30"><text x="10" y="20" fill="white" font-size="16" font-weight="bold">amazon</text></svg>');
+            height: 50px;
+            width: 100px;
+            background-size: cover;
+            cursor: pointer;
+        }
+
+        .border {
+            border: 2px solid transparent;
+            border-radius: 2px;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .border:hover {
+            border: 2px solid white;
+        }
+
+        .nav-search:hover {
+            border: 2px solid orange;
+        }
+
+        .add-first {
+            font-size: 0.85rem;
+            color: #cccccc;
+            margin-left: 15px;
+        }
+
+        .add-second {
+            font-size: 1rem;
+            color: white;
+            margin: 3px;
+        }
+
+        .add-icon {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-search {
+            display: flex;
+            justify-content: space-evenly;
+            background-color: white;
+            width: 620px;
+            height: 40px;
+            border-radius: 3px;
+        }
+
+        .search-select {
+            background-color: #f3f3f3;
+            width: 50px;
+            text-align: center;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+            border: none;
+        }
+
+        .search-input {
+            width: 100%;
+            font-size: 1rem;
+            border: none;
+            padding: 0 10px;
+            outline: none;
+        }
+
+        .search-icon {
+            width: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            font-size: 1.2rem;
+            background-color: #febd68;
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+            color: #0f1111;
+            cursor: pointer;
+        }
+
+        .nav-signin span {
+            font-size: 0.7rem;
+        }
+
+        .nav-second {
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .nav-cart i {
+            font-size: 30px;
+        }
+
+        .nav-cart {
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .panel {
+            height: 40px;
+            background-color: #222f3d;
+            display: flex;
+            color: white;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        .panel-all {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            gap: 5px;
+        }
+
+        .panel-options p {
+            display: inline;
+            color: white;
+            margin-left: 15px;
+            cursor: pointer;
+        }
+
+        .panel-options {
+            width: 70%;
+            font-size: 0.85rem;
+        }
+
+        .panel-deals {
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .hero-section {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6)), 
+                        url('homebackgrounimg.jpg');
+            background-size: cover;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: end;
+        }
+
+        #hero-anchor {
+            text-decoration: none;
+            color: #007185;
+            font-size: 0.85rem;
+        }
+
+        .hero-msg {
+            width: 90%;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+
+        .shop-section {
+            display: flex;
+            justify-content: space-evenly;
+            background-color: #e2e7e6;
+            flex-wrap: wrap;
+            padding: 20px 0;
+        }
+
+        .box {
+            height: 400px;
+            width: 23%;
+            background-color: white;
+            margin: 10px 5px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .box-img {
+            height: 300px;
+            margin: 1rem;
+            border-radius: 4px;
+            background-color: #f8f8f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .box-content {
+            margin: 1rem;
+        }
+
+        .box-content h2 {
+            margin-bottom: 10px;
+            color: #0f1111;
+        }
+
+        .box-content p {
+            color: #007185;
+            cursor: pointer;
+        }
+
+        .box-content p:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 15px;
+        }
+
+        .foot-panel1 {
+            background-color: #37475a;
+            color: white;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .foot-panel1:hover {
+            background-color: #485769;
+        }
+
+        .foot-panel2 {
+            background-color: #222f3d;
+            color: white;
+            height: 300px;
+            display: flex;
+            justify-content: space-evenly;
+            padding: 40px 0;
+        }
+
+        .foot-panel2 ul {
+            list-style: none;
+        }
+
+        .foot-panel2 ul p {
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .foot-panel2 ul a {
+            display: block;
+            font-size: 0.85rem;
+            color: #dddddd;
+            margin-top: 10px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .foot-panel2 ul a:hover {
+            text-decoration: underline;
+        }
+
+        .foot-panel3 {
+            background-color: #222f3d;
+            border-top: 0.5px solid #3a4553;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .foot-logo {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 50"><text x="40" y="30" text-anchor="middle" fill="white" font-size="12" font-weight="bold">amazon</text></svg>');
+            background-size: cover;
+            height: 50px;
+            width: 80px;
+        }
+
+        .foot-panel4 {
+            background-color: #0f1111;
+            color: white;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pages {
+            font-size: 0.7rem;
+            text-align: center;
+        }
+
+        .pages a {
+            color: #dddddd;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .pages a:hover {
+            text-decoration: underline;
+        }
+
+        .copyright {
+            margin-top: 5px;
+            font-size: 0.7rem;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.3);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-total {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Chatbot Styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .chatbot-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff9500, #ff6b35);
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chatbot-window.open {
+            display: flex;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #ff9500, #ff6b35);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 18px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .message.user {
+            background: #007185;
+            color: white;
+            margin-left: auto;
+        }
+
+        .message.bot {
+            background: white;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #ddd;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .chatbot-input button {
+            background: #ff9500;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-left: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .quick-action {
+            background: #e8f4f8;
+            color: #007185;
+            border: 1px solid #007185;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quick-action:hover {
+            background: #007185;
+            color: white;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Cart Count Badge */
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff9500;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+                height: auto;
+                padding: 10px;
+            }
+            
+            .nav-search {
+                width: 100%;
+                margin: 10px 0;
+            }
+            
+            .shop-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .box {
+                width: 90%;
+            }
+            
+            .chatbot-window {
+                width: 90vw;
+                height: 80vh;
+                right: 5vw;
+            }
+        }
+
+        /* Animation for adding to cart */
+        @keyframes addToCart {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .add-animation {
+            animation: addToCart 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <header> 
+        <div class="navbar">
+            <div class="nav-logo border">
+                <div class="logo" onclick="goHome()"></div>
+            </div>
+            <div class="nav-address border" onclick="selectLocation()">
+                <p class="add-first">Deliver to</p>
+                <div class="add-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p class="add-second" id="location">India</p>
+                </div>
+            </div>
+            <div class="nav-search">
+                <select class="search-select" id="searchCategory">
+                    <option>All</option>
+                    <option>Electronics</option>
+                    <option>Fashion</option>
+                    <option>Home</option>
+                    <option>Books</option>
+                </select>
+                <input placeholder="Search amazon" class="search-input" id="searchInput">
+                <div class="search-icon" onclick="performSearch()">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+            <div class="nav-signin border" onclick="signIn()">
+                <p><span>Hello, <span id="userName">sign in</span></span></p>
+                <p class="nav-second">Account & Lists</p>
+            </div>
+            <div class="nav-return border" onclick="viewOrders()">
+                <p><span>Returns</span></p>
+                <p class="nav-second">& Orders</p>
+            </div>
+            <div class="nav-cart border" onclick="toggleCart()" style="position: relative;">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Cart
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+        
+        <div class="panel">
+            <div class="panel-all border">
+                <i class="fa-solid fa-bars"></i>
+                All
+            </div>
+            <div class="panel-options">
+                <p onclick="showDeals()">Today's Deals</p>
+                <p onclick="showCustomerService()">Customer Service</p>
+                <p onclick="showRegistry()">Registry</p>
+                <p onclick="showSell()">Sell</p>
+            </div>
+            <div class="panel-deals">
+                Shop deals in Electronics
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-section">
+        <div class="hero-msg">
+            You are on amazon.com. You can also shop on Amazon India for millions of products with fast local delivery.
+            <a id="hero-anchor" href="#" onclick="switchToIndia()">Click here to go to amazon.in</a>
+        </div>
+    </div>
+
+    <div class="shop-section">
+        <div class="box" onclick="viewCategory('Beauty')">
+            <div class="box-content">
+                <h2>Beauty Picks</h2>
+                <div class="box-img" style="background-image:url('makeupimg.jpg');background-size: cover;background-position: center;">Beauty Products Image</div>
+                <p>See more</p>
+            </div>
+        </div>
+        <div class="box" onclick="viewCategory('Fashion')">
+            <div class="box-content">
+                <h2>New Fashion</h2>
+                <div class="box-img" style="background-image:url('projectimg2.jpg');background-size: cover;background-position: center;">Fashion Items Image</div>
+                <p>See more</p>
+            </div>
+        </div>
+        <div class="box" onclick="viewCategory('Home')">
+            <div class="box-content">
+                <h2>Room Decoration</h2>
+                <div class="box-img" style="background-image:url('projectimg3.jpg');background-size: cover;background-size: auto;">Home Decor Image</div>
+                <p>See more</p>
+            </div>
+        </div>
+        <div class="box" onclick="viewCategory('Electronics')">
+            <div class="box-content">
+                <h2>Wireless Speakers</h2>
+                <div class="box-img" style="background-image:url('projectimg4.jpg');background-size: cover;background-position: center;background-size: auto;">Speaker Image</div>
+                <p>See more</p>
+            </div>
+        </div>
+        <div class="box" onclick="viewCategory('Daily')">
+            <div class="box-content">
+                <h2>Daily Products</h2>
+                <div class="box-img" style="background-image:url('projectimg5.jpg');background-size: cover;">Daily Items Image</div>
+                <p>See more</p>
+            </div>
+        </div>
+        <div class="box" onclick="viewCategory('Audio')">
+            <div class="box-content">
+                <h2>AirPods</h2>
+                <div class="box-img" style="background-image:url('projectimg6.jpg');background-size: cover;background-position: center;">AirPods Image</div>
+                <p>See more</p>
+            </div>
+        </div>
+        <div class="box" onclick="viewCategory('Electronics')">
+            <div class="box-content">
+                <h2>Electronic Items</h2>
+                <div class="box-img" style="background-image:url('projectimg7.jpg');background-size: cover; background-position: center;">Electronics Image</div>
+                <p>See more</p>
+            </div>
+        </div>
+        <div class="box" onclick="viewCategory('Accessories')">
+            <div class="box-content">
+                <h2>Chargers</h2>
+                <div class="box-img" style="background-image:url('projectimg8.jpg');background-size: cover;">Charger Image</div>
+                <p>See more</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="cart-close" onclick="toggleCart()">&times;</button>
+        </div>
+        <div id="cartItems">
+            <p>Your cart is empty</p>
+        </div>
+        <div class="cart-total" id="cartTotal">
+            Total: $0.00
+        </div>
+        <button style="width: 100%; padding: 15px; background: #ff9500; color: white; border: none; border-radius: 4px; margin-top: 20px; cursor: pointer;" onclick="checkout()">
+            Proceed to Checkout
+        </button>
+    </div>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <h4>Amazon Assistant</h4>
+                <button style="background: none; border: none; color: white; font-size: 20px; cursor: pointer;" onclick="toggleChatbot()">&times;</button>
+            </div>
+            <div class="chatbot-messages" id="chatMessages">
+                <div class="message bot">
+                    Hi! I'm your Amazon shopping assistant. How can I help you today?
+                    <div class="quick-actions">
+                        <div class="quick-action" onclick="sendQuickMessage('Track my order')">Track Order</div>
+                        <div class="quick-action" onclick="sendQuickMessage('Find deals')">Find Deals</div>
+                        <div class="quick-action" onclick="sendQuickMessage('Return item')">Returns</div>
+                        <div class="quick-action" onclick="sendQuickMessage('Account help')">Account Help</div>
+                    </div>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="handleChatKeyPress(event)">
+                <button onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <button class="chatbot-toggle" onclick="toggleChatbot()">
+            <i class="fa-solid fa-comments"></i>
+        </button>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="signInModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('signInModal')">&times;</button>
+            <h3>Sign In</h3>
+            <input type="email" placeholder="Email" style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px;">
+            <input type="password" placeholder="Password" style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px;">
+            <button onclick="completeSignIn()" style="width: 100%; padding: 12px; background: #ff9500; color: white; border: none; border-radius: 4px; cursor: pointer;">Sign In</button>
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        let cart = [];
+        let isSignedIn = false;
+        let userName = 'Guest';
+
+        // Search functionality
+        function performSearch() {
+            const query = document.getElementById('searchInput').value;
+            const category = document.getElementById('searchCategory').value;
+            
+            if (query.trim()) {
+                alert(`Searching for "${query}" in ${category} category...`);
+                // In a real app, this would redirect to search results
+            }
+        }
+
+        // Handle Enter key in search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Navigation functions
+        function goHome() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function selectLocation() {
+            const locations = ['India', 'USA', 'UK', 'Canada', 'Australia'];
+            const current = document.getElementById('location').textContent;
+            const currentIndex = locations.indexOf(current);
+            const nextIndex = (currentIndex + 1) % locations.length;
+            document.getElementById('location').textContent = locations[nextIndex];
+        }
+
+        function signIn() {
+            document.getElementById('signInModal').style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function completeSignIn() {
+            userName = 'John';
+            isSignedIn = true;
+            document.getElementById('userName').textContent = userName;
+            closeModal('signInModal');
+            addChatMessage('Welcome back, ' + userName + '! How can I assist you today?', 'bot');
+        }
+
+        function viewOrders() {
+            if (!isSignedIn) {
+                signIn();
+                return;
+            }
+            alert('Your recent orders:\n• Wireless Headphones - Delivered\n• Phone Case - In Transit\n• Book - Processing');
+        }
+
+        // Category functions
+        function viewCategory(category) {
+            alert(`Viewing ${category} category with featured products and deals!`);
+        }
+
+        function showDeals() {
+            alert('Today\'s Deals:\n• 50% off Electronics\n• Buy 2 Get 1 Free Books\n• 30% off Fashion');
+        }
+
+        function showCustomerService() {
+            toggleChatbot();
+            setTimeout(() => {
+                addChatMessage('Hello! I\'m here to help with any questions about your orders, returns, or account. What can I assist you with?', 'bot');
+            }, 500);
+        }
+
+        function showRegistry() {
+            alert('Create and manage your gift registries for weddings, birthdays, and special occasions!');
+        }
+
+        function showSell() {
+            alert('Start selling on Amazon:\n• List your products\n• Reach millions of customers\n• Fulfill by Amazon available');
+        }
+
+        function switchToIndia() {
+            document.getElementById('location').textContent = 'India';
+            alert('Switched to Amazon India! Enjoy fast local delivery.');
+        }
+
+        // Cart functionality
+        function toggleCart() {
+            const sidebar = document.getElementById('cartSidebar');
+            sidebar.classList.toggle('open');
+            updateCartDisplay();
+        }
+
+        function addToCart(item, price) {
+            cart.push({ name: item, price: price, id: Date.now() });
+            updateCartCount();
+            updateCartDisplay();
+            
+            // Animation
+            const cartIcon = document.querySelector('.nav-cart');
+            cartIcon.classList.add('add-animation');
+            setTimeout(() => cartIcon.classList.remove('add-animation'), 300);
+            
+            addChatMessage(`Added "${item}" to your cart! Anything else I can help you find?`, 'bot');
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartCount();
+            updateCartDisplay();
+        }
+
+        function updateCartCount() {
+            document.getElementById('cartCount').textContent = cart.length;
+        }
+
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p>Your cart is empty</p>';
+                cartTotal.textContent = 'Total: $0.00';
+                return;
+            }
+            
+            let html = '';
+            let total = 0;
+            
+            cart.forEach(item => {
+                html += `
+                    <div class="cart-item">
+                        <div>
+                            <strong>${item.name}</strong><br>
+                            <small>$${item.price}</small>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})" style="background: #ff4444; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Remove</button>
+                    </div>
+                `;
+                total += item.price;
+            });
+            
+            cartItems.innerHTML = html;
+            cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            if (!isSignedIn) {
+                alert('Please sign in to continue with checkout.');
+                signIn();
+                return;
+            }
+            
+            alert(`Proceeding to checkout with ${cart.length} items.\nTotal: $${cart.reduce((sum, item) => sum + item.price, 0).toFixed(2)}`);
+            cart = [];
+            updateCartCount();
+            updateCartDisplay();
+            toggleCart();
+        }
+
+        // Chatbot functionality
+        function toggleChatbot() {
+            const window = document.getElementById('chatbotWindow');
+            window.classList.toggle('open');
+        }
+
+        function addChatMessage(message, sender) {
+            const messagesDiv = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            messageDiv.textContent = message;
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                addChatMessage(message, 'user');
+                input.value = '';
+                
+                // Simulate bot response
+                setTimeout(() => {
+                    const response = generateBotResponse(message);
+                    addChatMessage(response, 'bot');
+                }, 1000);
+            }
+        }
+
+        function sendQuickMessage(message) {
+            addChatMessage(message, 'user');
+            setTimeout(() => {
+                const response = generateBotResponse(message);
+                addChatMessage(response, 'bot');
+            }, 1000);
+        }
+
+        function handleChatKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function generateBotResponse(userMessage) {
+            const msg = userMessage.toLowerCase();
+            
+            if (msg.includes('track') || msg.includes('order')) {
+                if (!isSignedIn) {
+                    return 'Please sign in to track your orders. I can help you with that!';
+                }
+                return 'Your recent orders:\n• Wireless Headphones - Delivered Dec 28\n• Phone Case - In Transit, arriving tomorrow\n• Book - Processing\n\nWould you like more details about any order?';
+            }
+            
+            if (msg.includes('deal') || msg.includes('sale') || msg.includes('discount')) {
+                return 'Here are today\'s best deals:\n• 50% off Electronics\n• Buy 2 Get 1 Free Books\n• 30% off Fashion items\n• Free shipping on orders over $35\n\nWould you like me to show you deals in a specific category?';
+            }
+            
+            if (msg.includes('return') || msg.includes('refund')) {
+                return 'I can help with returns! Most items can be returned within 30 days. Go to "Your Orders" to start a return, or I can guide you through the process. What item would you like to return?';
+            }
+            
+            if (msg.includes('account') || msg.includes('help')) {
+                return 'I can help with:\n• Password reset\n• Payment methods\n• Address changes\n• Prime membership\n• Order history\n\nWhat specific account help do you need?';
+            }
+            
+            if (msg.includes('cart') || msg.includes('add')) {
+                return 'I can help you add items to your cart! Try clicking on any product category above, or tell me what you\'re looking for and I\'ll help you find it.';
+            }
+            
+            if (msg.includes('price') || msg.includes('cost')) {
+                return 'I can help you find the best prices! We offer:\n• Price matching\n• Daily deals\n• Lightning deals\n• Subscribe & Save discounts\n\nWhat product are you looking for?';
+            }
+            
+            if (msg.includes('shipping') || msg.includes('delivery')) {
+                return 'We offer several shipping options:\n• FREE standard shipping on $35+\n• Prime same-day delivery\n• Prime 2-day shipping\n• Express 1-day shipping\n\nWhat\'s your zip code for accurate delivery estimates?';
+            }
+            
+            if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey')) {
+                return 'Hello! Welcome to Amazon. I\'m here to help you find products, track orders, or answer any questions. What can I help you with today?';
+            }
+            
+            if (msg.includes('thank') || msg.includes('thanks')) {
+                return 'You\'re welcome! Is there anything else I can help you with today?';
+            }
+            
+            // Default responses
+            const defaultResponses = [
+                'I\'d be happy to help you with that! Can you tell me more about what you\'re looking for?',
+                'Let me assist you with that. Could you provide more details?',
+                'I\'m here to help! What specific information do you need?',
+                'That\'s a great question! Let me see how I can help you.',
+                'I can definitely help with that. What would you like to know?'
+            ];
+            
+            return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+        }
+
+        // Initialize chatbot
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auto-scroll back to top functionality
+            const backToTop = document.querySelector('.foot-panel1');
+            if (backToTop) {
+                backToTop.onclick = function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                };
+            }
+            
+            // Add sample products for demo
+            window.sampleProducts = {
+                'Beauty': [
+                    { name: 'Lipstick Set', price: 29.99 },
+                    { name: 'Face Mask Kit', price: 19.99 },
+                    { name: 'Makeup Brushes', price: 24.99 }
+                ],
+                'Fashion': [
+                    { name: 'Winter Jacket', price: 89.99 },
+                    { name: 'Jeans', price: 49.99 },
+                    { name: 'Sneakers', price: 79.99 }
+                ],
+                'Electronics': [
+                    { name: 'Wireless Speaker', price: 129.99 },
+                    { name: 'Bluetooth Headphones', price: 99.99 },
+                    { name: 'Phone Charger', price: 19.99 }
+                ]
+            };
+        });
+
+        // Enhanced category viewing with sample products
+        function viewCategory(category) {
+            const products = window.sampleProducts[category] || [
+                { name: 'Sample Product 1', price: 29.99 },
+                { name: 'Sample Product 2', price: 39.99 }
+            ];
+            
+            let productList = `${category} Products:\n\n`;
+            products.forEach((product, index) => {
+                productList += `${index + 1}. ${product.name} - ${product.price}\n`;
+            });
+            
+            const choice = prompt(productList + '\nEnter product number to add to cart (or cancel):');
+            
+            if (choice && !isNaN(choice)) {
+                const productIndex = parseInt(choice) - 1;
+                if (productIndex >= 0 && productIndex < products.length) {
+                    const product = products[productIndex];
+                    addToCart(product.name, product.price);
+                }
+            }
+        }
+
+        // Click outside to close modals
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        };
+    </script>
+
+    <footer>
+        <div class="foot-panel1">
+            Back to Top
+        </div>
+        <div class="foot-panel2">
+            <ul>
+                <p>Get to Know Us</p>
+                <a href="#">Careers</a>
+                <a href="#">Blog</a>
+                <a href="#">About Amazon</a>
+                <a href="#">Investor Relations</a>
+                <a href="#">Amazon Science</a>
+            </ul>
+            <ul>
+                <p>Make Money with Us</p>
+                <a href="#">Sell products on Amazon</a>
+                <a href="#">Sell on Amazon Business</a>
+                <a href="#">Sell apps on Amazon</a>
+                <a href="#">Become an Affiliate</a>
+                <a href="#">Advertise Your Products</a>
+            </ul>
+            <ul>
+                <p>Amazon Payment Products</p>
+                <a href="#">Amazon Business Card</a>
+                <a href="#">Shop with Points</a>
+                <a href="#">Reload Your Balance</a>
+                <a href="#">Amazon Currency Converter</a>
+            </ul>
+            <ul>
+                <p>Let Us Help You</p>
+                <a href="#">Amazon and COVID-19</a>
+                <a href="#">Your Account</a>
+                <a href="#">Your Orders</a>
+                <a href="#">Shipping Rates & Policies</a>
+                <a href="#">Returns & Replacements</a>
+            </ul>
+        </div>
+        <div class="foot-panel3">
+            <div class="foot-logo"></div>
+        </div>
+        <div class="foot-panel4">
+            <div class="pages">
+                <a href="#">Conditions of Use</a>
+                <a href="#">Privacy Notice</a>
+                <a href="#">Your Ads Privacy Choices</a>
+                <div class="copyright">
+                    © 1996-2023, Amazon.com, Inc. or its affiliates
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
